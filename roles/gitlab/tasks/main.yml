@@ -35,17 +35,20 @@
     service: http
     permanent: yes
     state: enabled
+  ignore_errors: yes
   
 - name: Open https on firewalld
   firewalld:
     service: https
     permanent: yes
     state: enabled
+  ignore_errors: yes
 
 - name: reload service firewalld
   systemd:
     name: firewalld
     state: reloaded
+  ignore_errors: yes
 
 - name: Add the GitLab package repository
   shell: curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh | sudo bash
