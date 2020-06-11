@@ -1,0 +1,51 @@
+- name: install policycoreutils-python
+  yum:
+    name: policycoreutils-python
+    state: latest
+
+- name: install curl
+  yum:
+      name: curl
+      state: latest
+
+- name: install openssh-server
+  yum:
+    name: openssh-server
+    state: latest
+
+- name: install postfix
+  yum:
+    name: postfix
+    state: latest
+
+- name: Start and Enable postfix
+  service:
+    name: postfix
+    state: started
+    enabled: yes
+
+- name: Start and Enable SSHD
+  service:
+    name: sshd
+    state: started
+    enabled: yes
+
+- name: Open http on firewalld
+  firewalld:
+    service: http
+    permanent: yes
+    state: enabled
+  
+- name: Open https on firewalld
+  firewalld:
+    service: https
+    permanent: yes
+    state: enabled
+
+- name: reload service firewalld
+  systemd:
+    name: firewalld
+    state: reloaded
+
+- name: Add the GitLab package repository
+  shell: curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh | sudo bash
