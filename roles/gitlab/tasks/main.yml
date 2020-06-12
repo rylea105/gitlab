@@ -53,9 +53,6 @@
 - name: Add the GitLab package repository
   shell: curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh | sudo bash
 
-- name: set env
-  shell: sudo EXTERNAL_URL="https://gitlab.rylea105.tk"
-
 - name: Install Gitlab-ee
   yum:
     name: gitlab-ee
