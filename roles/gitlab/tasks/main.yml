@@ -57,3 +57,5 @@
   yum:
     name: gitlab-ee
     state: latest
+  environment:
+    EXTERNAL_URL: http://gitlab.rylea105.tk
